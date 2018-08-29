@@ -36,9 +36,8 @@ TBD
 
 TBD
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+<!-- ## Contributing -->
+<!-- Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us. -->
 
 ## Versioning
 
@@ -52,5 +51,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## License
 
-MIT License - see the [LICENSE.md](LICENSE.md) file for details
+MIT License
+<!-- MIT License - see the [LICENSE.md](LICENSE.md) file for details -->
 

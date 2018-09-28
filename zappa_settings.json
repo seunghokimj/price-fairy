@@ -6,7 +6,8 @@
         "aws_environment_variables": {
             "NAVER_CLIENT_ID": "YOUR_NAVER_CLIENT_ID",
             "NAVER_CLIENT_SECRET": "YOUR_NAVER_CLIENT_SECRET",
-            "SENDER_EMAIL": "YOUR_SENDER_EMAIL@example.com"
+            "SENDER_EMAIL": "YOUR_SENDER_EMAIL@example.com",
+            "SLACK_WEBHOOK_URL": "YOUR_SLACK_WEBHOOK_URL"
         },
 
         "callbacks": { // Call custom functions during the local Zappa deployment/update process
@@ -15,7 +16,7 @@
         "events": [
             {
                 "function": "price_fairy.lambda_handler",
-                "expression": "cron(5 * * * ? *)"
+                "expression": "cron(10 * * * ? *)"
             }
         ],
         "exclude": ["emullambda*"],
@@ -25,11 +26,11 @@
         "lambda_description": "Lowest Price Alarm Fairy",
         "lambda_handler": "price_fairy.lambda_handler",
         "memory_size": 128,
-        "profile_name": "seungho_private",
+        "profile_name": "default",
         "project_name": "price-fairy",
 
         "runtime": "python3.6",
-        "s3_bucket": "zapp-price-fariy", // Zappa zip bucket,
+        "s3_bucket": "your-s3-bucket", // Zappa zip bucket,
         "timeout_seconds": 60, // Maximum lifespan for the Lambda function (default 30, max 300.)
     }
 }

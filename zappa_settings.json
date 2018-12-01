@@ -2,7 +2,7 @@
     "production": {
         "apigateway_enabled": false,
         "aws_region": "ap-northeast-2",
-        "assume_policy": "price_fairy_policy.json", // optional, IAM attach policy JSON file
+        // "assume_policy": "price_fairy_policy.json", // optional, IAM attach policy JSON file
 
         "aws_environment_variables": {
             "NAVER_CLIENT_ID": "YOUR_NAVER_CLIENT_ID",

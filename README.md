@@ -24,9 +24,10 @@ Python과 AWS lambda로 동작하는 최저가 알림 기능 입니다.
 ```sh
 ec2-user:~/environment $ sudo yum install -y tree
 
-ec2-user:~/environment $ git clone --single-branch --branch step0 https://github.com/seunghokimj/price-fairy.git
-
+ec2-user:~/environment $ git clone https://github.com/seunghokimj/price-fairy.git
 ec2-user:~/environment $ cd price-fairy/
+ec2-user:~/environment/price-fairy (master) $ git checkout -t origin/step0
+
 ec2-user:~/environment/price-fairy (step0) $ tree
 .
 ├── aws
@@ -62,6 +63,11 @@ ec2-user:~/environment/price-fairy (step0) $ . venv/bin/activate
 ## Step 1 DB Modeling
 ### Product Table, Price Record Table 생성
 슬라이드 참고
+
+#### Step 1 Checkout
+```
+(venv) ec2-user:~/environment/price-fairy (step0) $ git checkout -t origin/step1
+```
 
 #### model.py
 ```
@@ -103,8 +109,7 @@ class Product(Model):
 
 #### Example item 추가 
 ```
-(venv) ec2-user:~/environment/price-fairy (step0) $ git pull
-(venv) ec2-user:~/environment/price-fairy (step0) $ git checkout origin/step1
+
 (venv) ec2-user:~/environment/price-fairy (step1) $ python step1/add_example_item.py 
 
 ```
@@ -112,21 +117,105 @@ class Product(Model):
 ## Step 2 Shopping API
 Naver Shopping API를 호출하는 기능을 개발합니다.
 
+#### Step 2 Checkout
+```
+(venv) ec2-user:~/environment/price-fairy (step1) $ git checkout -t origin/step2
+```
+
 ### Naver Open API 등록
 [Naver Open API 등록](https://developers.naver.com/docs/common/openapiguide/appregister.md#애플리케이션-등록)
 
 
+#### naver_api.py
+```
+...
+naver_shopping_api_endpoint = "https://openapi.naver.com/v1/search/shop.json?query={}&display={}&sort={}"
+naver_client_id = os.getenv('NAVER_CLIENT_ID')
+naver_client_secret = os.getenv('NAVER_CLIENT_SECRET')
+naver_api_header = {
+    'X-Naver-Client-Id': naver_client_id,
+    'X-Naver-Client-Secret': naver_client_secret
+}
+...
+```
+
 #### Naver API Test
 ```
-(venv) ec2-user:~/environment/price-fairy (step1) $ git checkout -t origin/step2
+(venv) ec2-user:~/environment/price-fairy (step2) $ git checkout -t origin/step2
+(venv) ec2-user:~/environment/price-fairy (step2) $ python step2/test_naver_api.py
 
- 
 ```
 
 ## Step 3 Slack Push Setup
+최저가 알람을 Slack에 push notification 하는 기능을 개발합니다.
 
+### Slack Workspace 생성, Private Channel 생성 
+슬라이드 참고
+
+#### Step 3 Checkout
+```
+(venv) ec2-user:~/environment/price-fairy (step2) $ git checkout -t origin/step3
+```
+
+
+#### slack_api.py
+```
+...
+SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL')  # webhook 주소 추가  
+...
+```
+
+#### Slack Push Test
+```
+(venv) ec2-user:~/environment/price-fairy (step3) $ python step3/test_slack_message.py
+```
 
 ## Step 4 Zappa
+Zappa setup을 하고 Lambda 에 deploy 합니다.
+
+#### Step 4 Checkout
+```
+(venv) ec2-user:~/environment/price-fairy (step3) $ git checkout -t origin/step4
+```
+
+#### model.py
+기존 model.py 에서 최저가 탐색 로직을 추가합니다. 
+```
+    def update_lprice(self, lprice_item): 
+...
+
+    def update_last_crawled_at(self):
+...
+    def search_lowest_price(self):
+...
+```
+
+#### price_fairy.py
+lambda_handler 에 dynamodb 에서 데이터를 읽어서 앞서 구현한 최저가 탐색 로직을 수행하도록 코드를 추가합니다.
+
+
+#### zappa_settings.json
+Naver API와 Slack webhook url 을 알맞게 수정합니다.
+```
+...
+        "aws_environment_variables": {
+            "NAVER_CLIENT_ID": "YOUR_NAVER_CLIENT_ID",
+            "NAVER_CLIENT_SECRET": "YOUR_NAVER_CLIENT_SECRET",
+            "SENDER_EMAIL": "YOUR_SENDER_EMAIL@example.com",
+            "SLACK_WEBHOOK_URL": "YOUR_SLACK_WEBHOOK_URL"
+        },
+...
+    "s3_bucket": "",
+
+...
+```
+
+### Lambda 배포
+#### Zappa deploy
+```
+(venv) ec2-user:~/environment/price-fairy (step4) $ zappa deploy production
+
+```
 
 
 

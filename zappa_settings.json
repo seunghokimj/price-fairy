@@ -31,7 +31,7 @@
         "project_name": "price-fairy",
 
         "runtime": "python3.6",
-        //"s3_bucket": "your-s3-bucket", // Zappa zip bucket,
+        "s3_bucket": "YOUR_S3_BUCKET",
         "timeout_seconds": 60, // Maximum lifespan for the Lambda function (default 30, max 300.)
     }
 }

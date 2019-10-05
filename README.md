@@ -4,7 +4,9 @@ Python과 AWS lambda로 동작하는 최저가 알림 기능 입니다.
 
 가격 요정(..)이 네이버 쇼핑 API를 사용하여 등록한 item의 최저가를 알려줍니다.
 
-혼자서 사용하던 프로젝트이지만 python과 serverless 개념을 이해하는데 도움이 될 수 있을것 같아 repo를 만들었습니다.
+혼자서 개발한 toy project 이지만 python과 serverless 개념을 이해하는데 도움이 될 수 있을것 같아 repo 공유합니다.
+
+버그나 설계에 대한 피드백 환영합니다.
 
 
 ## Getting Started
@@ -12,16 +14,10 @@ Python과 AWS lambda로 동작하는 최저가 알림 기능 입니다.
 
 ### Prerequisites
 
-```
-python3
-virtualenv
-zappa
-boto3
+[python serverless demo](https://github.com/seunghokimj/python-serverless-demo)를 참고하여 "Cloud 9 시작하기", "AWS Credentials 설정
+", "S3 Bucket 생성하기", "Python 개발 환경 설정" 을 진행합니다.
 
-AWS account
-Naver developer account
-```
-
+<!--
 ### Installing
 
 TBD
@@ -35,7 +31,7 @@ TBD
 ## Deployment
 
 TBD
-
+-->
 <!-- ## Contributing -->
 <!-- Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us. -->
 

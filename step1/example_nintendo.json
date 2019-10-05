@@ -1,0 +1,13 @@
+{
+  "created_at": "2019-10-06",
+  "do_crawl": true,
+  "id": "닌텐도스위치",
+  "min_price": 300000,
+  "queries": [
+    {
+      "display": 50,
+      "query": "닌텐도 스위치",
+      "sort": "sim"
+    }
+  ]
+}

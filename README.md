@@ -17,6 +17,82 @@ Python과 AWS lambda로 동작하는 최저가 알림 기능 입니다.
 [python serverless demo](https://github.com/seunghokimj/python-serverless-demo)를 참고하여 "Cloud 9 시작하기", "AWS Credentials 설정
 ", "S3 Bucket 생성하기", "Python 개발 환경 설정" 을 진행합니다.
 
+## 
+
+## Step 0 Initial Setup
+
+```sh
+ec2-user:~/environment $ sudo yum install -y tree
+
+ec2-user:~/environment $ git clone -b step0 https://github.com/seunghokimj/price-fairy.git
+
+ec2-user:~/environment $ cd price-fairy/
+ec2-user:~/environment/price-fairy (step0) $ tree
+.
+├── aws
+│   └── ses.py
+├── callback.py
+├── price_fairy_policy.json
+├── price_fairy.py
+├── README.md
+├── requirements.txt
+└── zappa_settings.json
+
+```
+
+### virtualenv 설정
+```
+ec2-user:~/environment/price-fairy (step0) $ virtualenv -p python3 venv
+Running virtualenv with interpreter /usr/bin/python3
+Using base prefix '/usr'
+New python executable in /home/ec2-user/environment/price-fairy/venv/bin/python3
+Also creating executable in /home/ec2-user/environment/price-fairy/venv/bin/python
+Installing setuptools, pip, wheel...
+done.
+ec2-user:~/environment/price-fairy (step0) $ . venv/bin/activate
+(venv) ec2-user:~/environment/price-fairy (step0) $ 
+```
+
+### package 설치
+```
+(venv) ec2-user:~/environment/price-fairy (step0) $ pip install -r requirements.txt                                                      
+ 
+```
+
+## Step 1 DB Modeling
+### Product Table, Price Record Table 생성
+슬라이드 참고
+
+
+#### Example item 추가 
+```
+(venv) ec2-user:~/environment/price-fairy (step0) $ git pull
+(venv) ec2-user:~/environment/price-fairy (step0) $ git checkout origin/step1
+(venv) ec2-user:~/environment/price-fairy (step1) $ python step1/add_example_item.py 
+
+```
+
+## Step 2 Shopping API
+Naver Shopping API를 호출하는 기능을 개발합니다.
+
+### Naver Open API 등록
+[Naver Open API 등록](https://developers.naver.com/docs/common/openapiguide/appregister.md#애플리케이션-등록)
+
+
+#### Naver API Test
+```
+(venv) ec2-user:~/environment/price-fairy (step1) $ git checkout -t origin/step2
+
+ 
+```
+
+## Step 3 Slack Push Setup
+
+
+## Step 4 Zappa
+
+
+
 <!--
 ### Installing
 

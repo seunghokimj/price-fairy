@@ -5,8 +5,6 @@ import json
 import requests
 import logging
 
-from model import Product
-from naver_api import naver_client_id, naver_client_secret
 
 
 DEBUG = False
@@ -19,13 +17,5 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    # print(naver_client_id)
-    # print(naver_client_secret)
 
-    products = list(Product.scan(Product.do_crawl==True))
-
-    for product in products:
-        product.search_lowest_price()
-
-    print('{} product(s) crawled'.format(len(products)))
-
+    pass
